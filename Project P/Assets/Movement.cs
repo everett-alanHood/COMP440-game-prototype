@@ -42,10 +42,10 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        //controller.Move(move * speed * Time.deltaTime);
         Jump();
 
         velocity.y += gravity + Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        //controller.Move(velocity * Time.deltaTime);
     }
 }
