@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public CharacterController controller;
     public float speed = 6f;
     public float gravity = -9.81f;
     public Transform groundCheck;
@@ -42,10 +43,10 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        //controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
         Jump();
 
         velocity.y += gravity + Time.deltaTime;
-        //controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);
     }
 }
