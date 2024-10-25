@@ -249,6 +249,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea5cef02a5907d45b1f383a87b7bdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 717396129}
+  speed: 6
+  gravity: -9.81
+  groundCheck: {fileID: 0}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpHeight: 3
 --- !u!136 &717396125
 CapsuleCollider:
   m_ObjectHideFlags: 0
