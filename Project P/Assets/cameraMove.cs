@@ -8,7 +8,7 @@ public class cameraMove : MonoBehaviour
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     float xRotation = 0f;
-    // Start is called before the first frame update
+    bool canFreeMouse = false;
     void Start()
     {
         
@@ -17,6 +17,21 @@ public class cameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canFreeMouse){
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else{
+            Cursor.lockState = CursorLockMode.None;
+        }
+        
+        if (Input.GetKey(KeyCode.Escape)){
+            canFreeMouse = true;
+        }
+        else{
+            canFreeMouse = false;
+        }
+
+
         float MouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float MouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         xRotation -= MouseY;
