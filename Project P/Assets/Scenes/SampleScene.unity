@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 147787749}
   m_Layer: 0
   m_Name: Portal A
-  m_TagString: Portal A
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 598935788}
   m_Layer: 0
   m_Name: Portal B
-  m_TagString: Portal B
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -912,7 +912,7 @@ Transform:
   m_GameObject: {fileID: 1125614340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.025, y: -65.4, z: 0}
+  m_LocalPosition: {x: 0.003, y: -113.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1048,7 +1048,7 @@ Transform:
   m_GameObject: {fileID: 1423150753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.044, y: -57, z: 0}
+  m_LocalPosition: {x: 0.036, y: -114.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 1462845935}
   m_Layer: 0
   m_Name: Camera B
-  m_TagString: Portal B
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 1924591701}
   m_Layer: 0
   m_Name: Camera A
-  m_TagString: Portal A
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
