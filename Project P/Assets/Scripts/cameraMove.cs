@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class cameraMove : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 400f;
     public Transform playerBody;
     float xRotation = 0f;
     bool canFreeMouse = false;
