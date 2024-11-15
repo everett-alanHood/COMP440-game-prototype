@@ -14,7 +14,7 @@ public class PowerWash : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButton(1)){
-            onShoot.Invoke();
+            onShoot?.Invoke();
         }
     }
 }

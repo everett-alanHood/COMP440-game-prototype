@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class BlastDetect : MonoBehaviour
 {
+    public GameObject User;
+    public GameObject Item;
     public float range;
+    public float speed;
     public Transform PlayerCam;
     void Start()
     {
@@ -16,7 +19,8 @@ public class BlastDetect : MonoBehaviour
         Ray toolRay = new Ray(PlayerCam.position, PlayerCam.forward);
         if(Physics.Raycast(toolRay, out RaycastHit hitInfo, range)){
             if(hitInfo.collider.gameObject.TryGetComponent(out Entity portals)){
-                //movement
+                Item.transform.position = Vector3.MoveTowards(Item.transform.position, User.transform.position, speed)
+                
             }
         }
     }
