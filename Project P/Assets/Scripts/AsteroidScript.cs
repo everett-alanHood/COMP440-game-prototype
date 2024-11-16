@@ -10,11 +10,12 @@ public class Asteroid1Script : MonoBehaviour
     public float minSpin;
     public Rigidbody2D asteroid;
 
-    // positions of screen borders
-    public float topBorder;
-    public float bottomBorder;
-    public float leftBorder;
-    public float rightBorder;
+    // LOCAL positions of screen borders (relative to the parent GameObject: Canvas)
+    
+    public float topBorder = 623;  // y = 623
+    public float bottomBorder = -623; // y = -623
+    public float leftBorder = -998;  // x = -998
+    public float rightBorder = 1089;  // x = 1089
 
     // Start is called before the first frame update
     void Start()
@@ -35,33 +36,34 @@ public class Asteroid1Script : MonoBehaviour
     {
         // Causes asteroid to wrap around screen
         
-        /* Vector3 newPos = asteroid.position;
+        Vector3 newPos = transform.localPosition;
 
-        if (asteroid.position.x > rightBorder)
+        if (transform.localPosition.x > rightBorder)
         {
             newPos.x = leftBorder;
-            asteroid.position = newPos;
+            transform.localPosition = newPos;
 
         }
-        else if (asteroid.position.x < leftBorder)
+        else if (transform.localPosition.x < leftBorder)
         {
             newPos.x = rightBorder;
-            asteroid.position = newPos;
+            transform.localPosition = newPos;
 
         }
-        else if (asteroid.position.y > topBorder)
+        else if (transform.localPosition.y > topBorder)
         {
             newPos.y = bottomBorder;
-            asteroid.position = newPos;
+            transform.localPosition = newPos;
 
         }
-        else if (asteroid.position.y < bottomBorder)
+        else if (transform.localPosition.y < bottomBorder)
         {
             newPos.y = topBorder;
-            asteroid.position = newPos;
+            transform.localPosition = newPos;
 
         }
-        else { } */
+        else { }
 
-    }
-}
+    }  // end of Update() method
+
+}  // end of class
