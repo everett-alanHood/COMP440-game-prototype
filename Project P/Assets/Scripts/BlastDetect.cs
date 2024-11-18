@@ -109,7 +109,7 @@ public class BlastDetect : MonoBehaviour
         }
 
         // Releasing hold
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(0))
         {
             Release();
         }

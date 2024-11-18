@@ -22,7 +22,7 @@ public class PowerWasher : MonoBehaviour
 
     void Update()
     {
-        // Check if the right mouse button is pressed
+        // Check if the left mouse button is pressed
         if (Input.GetMouseButton(0)) // Trigger on a single click
         {
             Debug.Log("Left mouse button clicked.");
