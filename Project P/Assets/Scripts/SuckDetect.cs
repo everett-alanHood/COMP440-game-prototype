@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlastDetect : MonoBehaviour
+public class SuckDetect : MonoBehaviour
 {
     public GameObject User; // The "gun"
     public float range = 100f; // The range of the raycast
-    public float pullForce = -5f; // Force used to attract the item
+    public float pullForce = 5f; // Force used to repel the item
     public float damping = 0.95f; // Damping factor to slow the item down gradually
     public float stopThreshold = 0.1f; // Distance at which the object stops completely
 
