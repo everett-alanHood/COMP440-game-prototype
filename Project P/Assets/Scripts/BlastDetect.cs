@@ -31,42 +31,49 @@ public class BlastDetect : MonoBehaviour
     }
 
     public void Shoot()
+{
+    if (playerCam == null) return; // Exit if the PlayerCam isn't assigned
+
+    Ray toolRay = new Ray(playerCam.position, playerCam.forward);
+    Debug.DrawRay(playerCam.position, playerCam.forward * range, Color.red, 1f);
+
+    if (Physics.Raycast(toolRay, out RaycastHit hitInfo, range))
     {
-        if (playerCam == null) return; // Exit if the PlayerCam isn't assigned
+        Debug.Log("Raycast hit: " + hitInfo.collider.gameObject.name);
 
-        
-        Ray toolRay = new Ray(playerCam.position, playerCam.forward);
-        Debug.DrawRay(playerCam.position, playerCam.forward * range, Color.red, 1f);
-
-        if (Physics.Raycast(toolRay, out RaycastHit hitInfo, range))
+        // Skip blackhole or other objects you don't want to pull
+        if (hitInfo.collider.gameObject.CompareTag("BlackholePortal"))
         {
-            Debug.Log("Raycast hit: " + hitInfo.collider.gameObject.name);
+            Debug.Log("Hit a Blackhole, skipping pull.");
+            return;
+        }
 
-            // Check if the hit object has an Entity component
-            if (hitInfo.collider.gameObject.TryGetComponent<Entity>(out Entity portals))
+        // Check if the hit object has an Entity component
+        if (hitInfo.collider.gameObject.TryGetComponent<Entity>(out Entity portals))
+        {
+            Debug.Log("Entity detected: " + portals.gameObject.name);
+            currentItem = portals.gameObject; // Assign the hit portal as the current item
+
+            // Ensure the item has a Rigidbody
+            if (!currentItem.TryGetComponent<Rigidbody>(out item))
             {
-                Debug.Log("Entity detected: " + portals.gameObject.name);
-                currentItem = portals.gameObject; // Assign the hit portal as the current item
-
-                // Ensure the item has a Rigidbody
-                if (!currentItem.TryGetComponent<Rigidbody>(out item))
-                {
-                    item = currentItem.AddComponent<Rigidbody>();
-                }
-
-                item.useGravity = false; // Disable gravity for smoother pulling
-                isPulling = true; // Start pulling the item
+                item = currentItem.AddComponent<Rigidbody>();
             }
-            else
-            {
-                Debug.LogWarning("Hit object does not have an Entity component.");
-            }
+
+            item.useGravity = false; // Disable gravity for smoother pulling
+            isPulling = true; // Start pulling the item
         }
         else
         {
-            Debug.LogWarning("Raycast did not hit any object.");
+            Debug.LogWarning("Hit object does not have an Entity component.");
         }
     }
+    else
+    {
+        Debug.LogWarning("Raycast did not hit any object.");
+    }
+}
+
 
     public void Release()
     {
