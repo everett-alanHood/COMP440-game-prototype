@@ -3,7 +3,16 @@ guid: 6a005a5fbf126ef48bfa909c6c9074d2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - positionA: {instanceID: 0}
+  - positionB: {instanceID: 0}
+  - audio_src: {instanceID: 0}
+  - teleportIN: {instanceID: 0}
+  - teleportOUT: {instanceID: 0}
+  - timeTravelPoint: {instanceID: 0}
+  - blackholeEffect: {fileID: 4100866881299196651, guid: c522f77240cae0a43a148322e9a99c6f, type: 3}
+  - projectilePrefab: {fileID: 4100866881299196651, guid: c522f77240cae0a43a148322e9a99c6f, type: 3}
+  - projectileSpawnPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

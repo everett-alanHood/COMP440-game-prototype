@@ -9,33 +9,47 @@ public class portalManager : MonoBehaviour
     public AudioSource audio_src;
     public AudioClip teleportIN, teleportOUT;
 
+    public Transform timeTravelPoint; // Time portal target
+
     private void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("Portal A")){
-            CharacterController cc = GetComponent<CharacterController>();
+        CharacterController cc = GetComponent<CharacterController>();
 
+        if (col.CompareTag("Portal A"))
+        {
             audio_src.clip = teleportIN;
             audio_src.Play();
 
-            cc.enabled = false;
-            transform.position = positionB.transform.position;
-            transform.rotation = new Quaternion(transform.rotation.x, positionB.rotation.y, transform.rotation.z, transform.rotation.w);
-
-            cc.enabled = true;
+            Teleport(positionB, cc);
         }
 
-        if (col.CompareTag("Portal B")){
-            CharacterController cc = GetComponent<CharacterController>();
-            
+        if (col.CompareTag("Portal B"))
+        {
             audio_src.clip = teleportOUT;
             audio_src.Play();
-            
-            cc.enabled = false;
-            transform.position = positionA.transform.position;
-            transform.rotation = new Quaternion(transform.rotation.x, positionA.rotation.y, transform.rotation.z, transform.rotation.w);
 
-            cc.enabled = true;
+            Teleport(positionA, cc);
         }
-    }
-}
 
+        if (col.CompareTag("TimePortal"))
+        {
+            Debug.Log("Time travel initiated!");
+            Teleport(timeTravelPoint, cc); // Moves player to a specific past location
+        }
+
+    }
+
+    private void Teleport(Transform targetPosition, CharacterController cc)
+    {
+        cc.enabled = false;
+        transform.position = targetPosition.position;
+        transform.rotation = new Quaternion(
+            transform.rotation.x,
+            targetPosition.rotation.y + 180f,
+            transform.rotation.z,
+            transform.rotation.w
+        );
+        cc.enabled = true;
+    }
+
+}

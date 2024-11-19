@@ -703,15 +703,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea5cef02a5907d45b1f383a87b7bdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 717396129}
-  speed: 6
-  gravity: -9.81
-  groundCheck: {fileID: 1701556268}
-  groundDistance: 0.2
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  jumpHeight: 3
+  playerCamera: {fileID: 963194227}
+  walkSpeed: 6
+  runSpeed: 12
+  jumpPower: 7
+  gravity: 9.81
+  lookSpeed: 2
+  lookXLimit: 45
+  defaultHeight: 2
+  crouchHeight: 1
+  crouchSpeed: 3
 --- !u!136 &717396125
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -845,6 +846,12 @@ MonoBehaviour:
   audio_src: {fileID: 660885119}
   teleportIN: {fileID: 8300000, guid: 725e17583a90a8f4d84a45b71d8aa3b7, type: 3}
   teleportOUT: {fileID: 8300000, guid: 162aec6c71703ab4cb968bff1ea75d12, type: 3}
+  timeTravelPoint: {fileID: 0}
+  blackholeEffect: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  projectileSpawnPoint: {fileID: 0}
+  projectileInterval: 1
+  projectileSpeed: 10
 --- !u!1 &809735834
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,9 +865,9 @@ GameObject:
   - component: {fileID: 809735839}
   - component: {fileID: 809735838}
   - component: {fileID: 809735837}
-  - component: {fileID: 809735841}
+  - component: {fileID: 809735836}
   m_Layer: 0
-  m_Name: Vacuum
+  m_Name: Power Washer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,6 +888,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 868236519}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &809735836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809735834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29e3aa241decd7459244e5800f32165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  User: {fileID: 809735834}
+  range: 5000
+  pullForce: 5
+  damping: 0.95
+  stopThreshold: 0.1
 --- !u!114 &809735837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,8 +920,8 @@ MonoBehaviour:
   onShoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 809735841}
-        m_TargetAssemblyTypeName: SuckDetect, Assembly-CSharp
+      - m_Target: {fileID: 809735836}
+        m_TargetAssemblyTypeName: BlastDetect, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 1
         m_Arguments:
@@ -979,23 +1003,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809735834}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &809735841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809735834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc80349da1d1d14da4b87ecf242c360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  User: {fileID: 809735834}
-  range: 5000
-  pullForce: 5
-  damping: 0.95
-  stopThreshold: 0.1
 --- !u!1 &868236518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,7 +1035,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 809735835}
-  - {fileID: 1820580172}
   m_Father: {fileID: 717396128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &868236520
@@ -1220,6 +1226,7 @@ Transform:
   m_Children:
   - {fileID: 147787748}
   - {fileID: 598935787}
+  - {fileID: 1752936030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1114113681
@@ -1633,7 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6987396429e2a74babd604260e98a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1820580171
+--- !u!1 &1752936029
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1641,58 +1648,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1820580172}
-  - component: {fileID: 1820580177}
-  - component: {fileID: 1820580176}
-  - component: {fileID: 1820580175}
-  - component: {fileID: 1820580178}
-  - component: {fileID: 1820580173}
+  - component: {fileID: 1752936030}
+  - component: {fileID: 1752936034}
+  - component: {fileID: 1752936033}
+  - component: {fileID: 1752936032}
+  - component: {fileID: 1752936031}
   m_Layer: 0
-  m_Name: Power Washer
-  m_TagString: Untagged
+  m_Name: BlackholePortal
+  m_TagString: BlackholePortal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1820580172
+--- !u!4 &1752936030
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820580171}
+  m_GameObject: {fileID: 1752936029}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.40863338, w: 0.9126986}
-  m_LocalPosition: {x: -0.79699993, y: -0.44999993, z: 0.351}
-  m_LocalScale: {x: 0.34239, y: 0.34239, z: 1.1547103}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 32.19, y: -0.22851348, z: 17.72}
+  m_LocalScale: {x: 3.71028, y: 0.04122, z: 2.9249299}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 868236519}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 48.238}
---- !u!114 &1820580173
+  m_Father: {fileID: 1114113680}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!114 &1752936031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820580171}
+  m_GameObject: {fileID: 1752936029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29e3aa241decd7459244e5800f32165, type: 3}
+  m_Script: {fileID: 11500000, guid: f6987396429e2a74babd604260e98a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  User: {fileID: 1820580171}
-  range: 5000
-  pullForce: 5
-  damping: 0.95
-  stopThreshold: 0.1
---- !u!65 &1820580175
+--- !u!65 &1752936032
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820580171}
+  m_GameObject: {fileID: 1752936029}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1701,19 +1702,19 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1820580176
+  m_Size: {x: 1.0000002, y: 1.9999999, z: 1.0000002}
+  m_Center: {x: 0.00000005960465, y: 0, z: -0.00000008940697}
+--- !u!23 &1752936033
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820580171}
+  m_GameObject: {fileID: 1752936029}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1727,7 +1728,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b868ded4d6143e429b7c5873858dec6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1749,41 +1750,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1820580177
+--- !u!33 &1752936034
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820580171}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1820580178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820580171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ef2fcb09edfec46a70791cf8755362, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onShoot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1820580173}
-        m_TargetAssemblyTypeName: BlastDetect, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_GameObject: {fileID: 1752936029}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1841821197
 GameObject:
   m_ObjectHideFlags: 0
