@@ -7,6 +7,10 @@ TagManager:
   - Portal A
   - Portal B
   - BlackholePortal
+  - ProjectilePortal
+  - shootPoint
+  - Projectile
+  - TimePortal
   layers:
   - Default
   - TransparentFX
