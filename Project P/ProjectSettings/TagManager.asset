@@ -11,6 +11,12 @@ TagManager:
   - shootPoint
   - Projectile
   - TimePortal
+  - door
+  - ladder
+  - Portal C
+  - Portal D
+  - Portal E
+  - Portal F
   layers:
   - Default
   - TransparentFX
