@@ -11786,7 +11786,7 @@ GameObject:
   - component: {fileID: 261088244}
   - component: {fileID: 261088243}
   m_Layer: 0
-  m_Name: BlackholePortal (1)
+  m_Name: BlackholePortal 2
   m_TagString: BlackholePortal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11801,7 +11801,7 @@ Transform:
   m_GameObject: {fileID: 261088241}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0048634554, y: -0.0048634554, z: 0.7070901, w: 0.7070901}
-  m_LocalPosition: {x: 106.2, y: -0.2, z: -143.5}
+  m_LocalPosition: {x: 98.4, y: -0.2, z: -143.6}
   m_LocalScale: {x: 3.71028, y: 0.04122, z: 2.9249299}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11821,7 +11821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pullForce: 50
-  pullRadius: 15
+  pullRadius: 9
   endGameOnPull: 1
   destroyDelay: 1.5
 --- !u!135 &261088244
@@ -31746,10 +31746,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionA: {fileID: 1125614341}
   positionB: {fileID: 1423150754}
-  positionC: {fileID: 0}
-  positionD: {fileID: 0}
-  positionE: {fileID: 0}
-  positionF: {fileID: 0}
+  positionC: {fileID: 1689696470}
+  positionD: {fileID: 1079683464}
+  positionE: {fileID: 545664883}
+  positionF: {fileID: 590091922}
   audio_src: {fileID: 660885119}
   teleportIN: {fileID: 8300000, guid: 725e17583a90a8f4d84a45b71d8aa3b7, type: 3}
   teleportOUT: {fileID: 8300000, guid: 162aec6c71703ab4cb968bff1ea75d12, type: 3}
@@ -52251,7 +52251,7 @@ Transform:
   m_GameObject: {fileID: 1191745610}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5019023, y: -0.50190234, z: 0.49809045, w: 0.4980904}
-  m_LocalPosition: {x: 73.05005, y: 0.019999504, z: -119.23369}
+  m_LocalPosition: {x: 73, y: 0.019999504, z: -118.7}
   m_LocalScale: {x: 3.71028, y: 0.04122, z: 2.9249299}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63496,7 +63496,7 @@ Transform:
   m_GameObject: {fileID: 1461665807}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5019023, y: -0.50190234, z: 0.49809045, w: 0.4980904}
-  m_LocalPosition: {x: 71.5, y: -0, z: 9.9}
+  m_LocalPosition: {x: 71.5, y: -0, z: 10.7}
   m_LocalScale: {x: 3.71028, y: 0.04122, z: 2.9249299}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74495,7 +74495,7 @@ Transform:
   m_GameObject: {fileID: 1724342208}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 59.7, y: 0, z: -15.7}
+  m_LocalPosition: {x: 59.7, y: 0, z: -16.27}
   m_LocalScale: {x: 3.71028, y: 0.04122, z: 2.9249299}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -82519,7 +82519,7 @@ Transform:
   m_GameObject: {fileID: 1913404605}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 61.25005, y: 0.019999504, z: -144.83368}
+  m_LocalPosition: {x: 61.25005, y: 0.019999504, z: -145.55}
   m_LocalScale: {x: 3.71028, y: 0.04122, z: 2.9249299}
   m_ConstrainProportionsScale: 0
   m_Children:
