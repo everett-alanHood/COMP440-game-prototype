@@ -17,6 +17,7 @@ TagManager:
   - Portal D
   - Portal E
   - Portal F
+  - WinCondition
   layers:
   - Default
   - TransparentFX
