@@ -4,29 +4,40 @@ using UnityEngine.Events;
 public class Vacuum : MonoBehaviour
 {
     public UnityEvent onShoot;
+    public UnityEvent onRelease;
+
+    private PullDetect pullDetect;
 
     void Start()
     {
-        // Automatically find the BlastDetect script and bind the Shoot method
-        SuckDetect suckDetect = FindObjectOfType<SuckDetect>();
-        if (suckDetect != null)
+        // Automatically find the PullDetect script
+        pullDetect = FindObjectOfType<PullDetect>();
+        if (pullDetect != null)
         {
-            onShoot.AddListener(suckDetect.Shoot);
-            Debug.Log("Shoot method bound to onShoot event.");
+            onShoot.AddListener(pullDetect.Shoot);
+            onRelease.AddListener(pullDetect.Release);
+            Debug.Log("Shoot and Release methods bound to events.");
         }
         else
         {
-            Debug.LogError("SuckDetect script not found in the scene.");
+            Debug.LogError("PullDetect script not found in the scene.");
         }
     }
 
     void Update()
     {
-        // Check if the right mouse button is pressed
-        if (Input.GetMouseButton(1)) // Trigger on a single click
+        // Trigger pulling on right mouse button hold
+        if (Input.GetMouseButtonDown(1)) // Start pulling
         {
             Debug.Log("Right mouse button clicked.");
             onShoot?.Invoke();
+        }
+
+        // Release pulling on right mouse button release
+        if (Input.GetMouseButtonUp(1)) // Stop pulling
+        {
+            Debug.Log("Right mouse button released.");
+            onRelease?.Invoke();
         }
     }
 }
