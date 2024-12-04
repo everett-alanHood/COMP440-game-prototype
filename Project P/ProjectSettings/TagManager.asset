@@ -17,6 +17,7 @@ TagManager:
   - Portal D
   - Portal E
   - Portal F
+  - WinCondition
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3707674191
+    locked: 0
+  - name: Midground
+    uniqueID: 3924123005
+    locked: 0
+  - name: Foreground
+    uniqueID: 467826285
     locked: 0
