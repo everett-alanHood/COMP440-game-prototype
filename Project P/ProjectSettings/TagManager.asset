@@ -7,6 +7,17 @@ TagManager:
   - Portal A
   - Portal B
   - BlackholePortal
+  - ProjectilePortal
+  - shootPoint
+  - Projectile
+  - TimePortal
+  - door
+  - ladder
+  - Portal C
+  - Portal D
+  - Portal E
+  - Portal F
+  - WinCondition
   layers:
   - Default
   - TransparentFX

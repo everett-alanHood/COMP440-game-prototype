@@ -6,6 +6,10 @@ public class portalManager : MonoBehaviour
 {
     public Transform positionA;
     public Transform positionB;
+    public Transform positionC;
+    public Transform positionD;
+    public Transform positionE;
+    public Transform positionF;
     public AudioSource audio_src;
     public AudioClip teleportIN, teleportOUT;
 
@@ -29,6 +33,38 @@ public class portalManager : MonoBehaviour
             audio_src.Play();
 
             Teleport(positionA, cc);
+        }
+
+        if (col.CompareTag("Portal C"))
+        {
+            audio_src.clip = teleportIN;
+            audio_src.Play();
+
+            Teleport(positionD, cc);
+        }
+
+        if (col.CompareTag("Portal D"))
+        {
+            audio_src.clip = teleportOUT;
+            audio_src.Play();
+
+            Teleport(positionC, cc);
+        }
+
+        if (col.CompareTag("Portal E"))
+        {
+            audio_src.clip = teleportIN;
+            audio_src.Play();
+
+            Teleport(positionF, cc);
+        }
+
+        if (col.CompareTag("Portal F"))
+        {
+            audio_src.clip = teleportOUT;
+            audio_src.Play();
+
+            Teleport(positionE, cc);
         }
 
         if (col.CompareTag("TimePortal"))
