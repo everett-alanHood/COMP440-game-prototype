@@ -6,14 +6,13 @@ public class PowerWasher : MonoBehaviour
     public UnityEvent onShoot;
 <<<<<<< HEAD
     public UnityEvent onRelease;
+
     private PushDetect pushDetect;
-    private AudioLooper audioLooper;
 
     void Start()
     {
+        // Automatically find the PushDetect script
         pushDetect = FindObjectOfType<PushDetect>();
-        audioLooper = FindObjectOfType<AudioLooper>();
-
         if (pushDetect != null)
 =======
 
@@ -31,33 +30,29 @@ public class PowerWasher : MonoBehaviour
         {
             Debug.LogError("BlastDetect script not found in the scene.");
         }
-
-        if (audioLooper != null)
-        {
-            onShoot.AddListener(audioLooper.StartAudioLoop);
-            onRelease.AddListener(audioLooper.StopAudioLoop);
-        }
-        else
-        {
-            Debug.LogError("AudioLooper script not found in the scene.");
-        }
     }
 
     void Update()
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
         if (Input.GetMouseButtonDown(0))
 =======
         // Check if the left mouse button is pressed
         if (Input.GetMouseButton(0)) // Trigger on a single click
 >>>>>>> parent of 178ddeb (Merge pull request #1 from everett-alanHood/main)
+=======
+        // Trigger pulling on left mouse button hold
+        if (Input.GetMouseButtonDown(0)) // Start pushing
+>>>>>>> parent of bd0cb9a (Test)
         {
             Debug.Log("Left mouse button clicked.");
             onShoot?.Invoke();
         }
 <<<<<<< HEAD
 
-        if (Input.GetMouseButtonUp(0))
+        // Release pulling on left mouse button release
+        if (Input.GetMouseButtonUp(0)) // Stop pushing
         {
             Debug.Log("Left mouse button released.");
             onRelease?.Invoke();
