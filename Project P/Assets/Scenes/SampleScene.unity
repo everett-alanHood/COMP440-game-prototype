@@ -474,11 +474,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 87d4de913eeecc042b40554b8c24076d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -847,11 +847,6 @@ MonoBehaviour:
   teleportIN: {fileID: 8300000, guid: 725e17583a90a8f4d84a45b71d8aa3b7, type: 3}
   teleportOUT: {fileID: 8300000, guid: 162aec6c71703ab4cb968bff1ea75d12, type: 3}
   timeTravelPoint: {fileID: 0}
-  blackholeEffect: {fileID: 0}
-  projectilePrefab: {fileID: 0}
-  projectileSpawnPoint: {fileID: 0}
-  projectileInterval: 1
-  projectileSpeed: 10
 --- !u!1 &809735834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1647,7 @@ GameObject:
   - component: {fileID: 1752936034}
   - component: {fileID: 1752936033}
   - component: {fileID: 1752936032}
-  - component: {fileID: 1752936031}
+  - component: {fileID: 1752936035}
   m_Layer: 0
   m_Name: BlackholePortal
   m_TagString: BlackholePortal
@@ -1675,18 +1670,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1114113680}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!114 &1752936031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752936029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6987396429e2a74babd604260e98a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1752936032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1758,6 +1741,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752936029}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1752936035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752936029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78ad9b13f69b544aa53f8b6f3de8a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullForce: 10
+  pullRadius: 5
+  endGameOnPull: 1
+  destroyDelay: 1.5
 --- !u!1 &1841821197
 GameObject:
   m_ObjectHideFlags: 0
