@@ -1,31 +1,50 @@
 using UnityEditor;
 using UnityEngine;
 
-public class ChangeChildrenColor : EditorWindow
+public class ApplyMaterialToChildren : EditorWindow
 {
-    [MenuItem("Tools/Change Level Items Color")]
-    public static void ChangeLevelItemsColor()
-    {
-        GameObject levelParent = GameObject.Find("Level");
+    public Material materialToApply; // The material to apply
+    public GameObject parentObject;  // The parent containing children to apply the material to
 
-        if (levelParent == null)
+    [MenuItem("Tools/Apply Material to Children")]
+    public static void ShowWindow()
+    {
+        GetWindow<ApplyMaterialToChildren>("Apply Material");
+    }
+
+    private void OnGUI()
+    {
+        // Input fields for the material and parent object
+        GUILayout.Label("Apply Material to Children", EditorStyles.boldLabel);
+
+        materialToApply = (Material)EditorGUILayout.ObjectField("Material", materialToApply, typeof(Material), false);
+        parentObject = (GameObject)EditorGUILayout.ObjectField("Parent Object", parentObject, typeof(GameObject), true);
+
+        if (GUILayout.Button("Apply Material"))
         {
-            Debug.LogError("No GameObject named 'Level' found in the scene.");
+            ApplyMaterial();
+        }
+    }
+
+    private void ApplyMaterial()
+    {
+        if (materialToApply == null || parentObject == null)
+        {
+            Debug.LogError("Please assign both a Material and a Parent Object.");
             return;
         }
 
-        foreach (Transform child in levelParent.transform)
+        // Loop through all children of the parent object
+        foreach (Transform child in parentObject.transform)
         {
             Renderer renderer = child.GetComponent<Renderer>();
             if (renderer != null)
             {
-                // Modify the prefab's shared material
-                Undo.RecordObject(renderer.sharedMaterial, "Change Material Color");
-                renderer.sharedMaterial.color = Color.yellow;
-                EditorUtility.SetDirty(renderer.sharedMaterial); // Mark it as dirty to save changes
+                Undo.RecordObject(renderer, "Apply Material"); // Allow Undo
+                renderer.sharedMaterial = materialToApply;
             }
         }
 
-        Debug.Log("All items under 'Level' turned yellow, changes applied to prefabs.");
+        Debug.Log($"Applied {materialToApply.name} to all children of {parentObject.name}.");
     }
 }
